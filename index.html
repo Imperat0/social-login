@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Login</title>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+        const data = jtw_decode(response.credential)
+        console.log(data)
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "533847370246-6au4rgo9dfogau383pisi2us7lj04pm9.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { 
+            theme:"filled-black",
+            size:"large",  
+            type:"standard",
+            shape:"pill",
+           text:"$ {button.text}",
+            locale:"pt-BR",
+            logo_alignment:"left",
+             width:"200px"
+             }  
+          );
+          google.accounts.id.prompt(); 
+        }
+    </script>
+</head>
+<body>
+   <div id="buttonDiv"></div>
+</body>
+</html>
